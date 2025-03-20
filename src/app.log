@@ -1,0 +1,49 @@
+2025-03-19 17:01:21,425 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:01:21,426 - __main__ - INFO - Creating database connection
+2025-03-19 17:01:21,426 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:01:21,464 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-03-19 17:01:21,465 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-19 17:01:21,466 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:01:22,960 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:01:22,960 - __main__ - INFO - Creating database connection
+2025-03-19 17:01:22,961 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:01:22,966 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:01:22,968 - werkzeug - INFO -  * Debugger PIN: 784-243-297
+2025-03-19 17:01:26,751 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:01:26] "GET /?ide_webview_request_time=1742414486734 HTTP/1.1" 200 -
+2025-03-19 17:01:40,264 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:01:40,265 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:01:40,773 - data_processing.data_collector - ERROR - Error collecting transaction data: Using URI string without sqlalchemy installed.
+2025-03-19 17:01:40,773 - user_interface.ai_agent - ERROR - Error initializing AI agent: Using URI string without sqlalchemy installed.
+2025-03-19 17:01:40,773 - user_interface.ai_agent - ERROR - Error processing query: Using URI string without sqlalchemy installed.
+2025-03-19 17:01:40,774 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:01:40] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:02:51,945 - __main__ - INFO - Processing query: Quais canais de aquisição estão gerando os clientes mais fiéis e lucrativos?
+2025-03-19 17:02:51,946 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:02:52,091 - data_processing.data_collector - ERROR - Error collecting transaction data: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:02:52,091 - user_interface.ai_agent - ERROR - Error initializing AI agent: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:02:52,091 - user_interface.ai_agent - ERROR - Error processing query: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:02:52,092 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:02:52] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:02:56,221 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:02:56,221 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:02:56,222 - data_processing.data_collector - ERROR - Error collecting transaction data: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:02:56,222 - user_interface.ai_agent - ERROR - Error initializing AI agent: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:02:56,222 - user_interface.ai_agent - ERROR - Error processing query: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:02:56,222 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:02:56] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:15,743 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:05:15,743 - __main__ - INFO - Creating database connection
+2025-03-19 17:05:15,743 - __main__ - INFO - Using database at: sqlite:///C:\Users\Johnny Pessoli\Documents\Projetos\Estudos\Data Science\TesteIA\src\customer_data.db
+2025-03-19 17:05:15,743 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:05:15,764 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-03-19 17:05:15,764 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-19 17:05:15,765 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:05:17,128 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:05:17,128 - __main__ - INFO - Creating database connection
+2025-03-19 17:05:17,129 - __main__ - INFO - Using database at: sqlite:///C:\Users\Johnny Pessoli\Documents\Projetos\Estudos\Data Science\TesteIA\src\customer_data.db
+2025-03-19 17:05:17,129 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:05:17,135 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:05:17,138 - werkzeug - INFO -  * Debugger PIN: 784-243-297

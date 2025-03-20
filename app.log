@@ -1,0 +1,415 @@
+2025-03-19 16:57:31,483 - __main__ - INFO - Initializing AI agent components
+2025-03-19 16:57:31,484 - __main__ - INFO - Creating database connection
+2025-03-19 16:57:31,485 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:04:31,312 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:04:31,312 - __main__ - INFO - Creating database connection
+2025-03-19 17:04:31,312 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:04:31,326 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-03-19 17:04:31,327 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-19 17:04:31,329 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:04:32,725 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:04:32,725 - __main__ - INFO - Creating database connection
+2025-03-19 17:04:32,725 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:04:32,732 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:04:32,734 - werkzeug - INFO -  * Debugger PIN: 784-243-297
+2025-03-19 17:04:33,469 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:04:33] "GET /?ide_webview_request_time=1742414673461 HTTP/1.1" 200 -
+2025-03-19 17:04:37,620 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:04:37,620 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:04:37,721 - data_processing.data_collector - ERROR - Error collecting transaction data: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:04:37,721 - user_interface.ai_agent - ERROR - Error initializing AI agent: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:04:37,721 - user_interface.ai_agent - ERROR - Error processing query: Could not parse SQLAlchemy URL from string 'db_connection_placeholder'
+2025-03-19 17:04:37,722 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:04:37] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:09,870 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Johnny Pessoli\\Documents\\Projetos\\Estudos\\Data Science\\TesteIA\\src\\main.py', reloading
+2025-03-19 17:05:10,096 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:05:11,749 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:05:11,749 - __main__ - INFO - Creating database connection
+2025-03-19 17:05:11,749 - __main__ - INFO - Using database at: sqlite:///c:\Users\Johnny Pessoli\Documents\Projetos\Estudos\Data Science\TesteIA\src\customer_data.db
+2025-03-19 17:05:11,749 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:05:11,755 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:05:11,757 - werkzeug - INFO -  * Debugger PIN: 784-243-297
+2025-03-19 17:05:30,597 - __main__ - INFO - Processing query: Quais produtos estão mais propensos a serem comprados nos próximos meses?
+2025-03-19 17:05:30,597 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:05:30,721 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:30.597835' AND '2025-03-19 17:05:30.597835'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:30,721 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:30.597835' AND '2025-03-19 17:05:30.597835'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:30,721 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:30.597835' AND '2025-03-19 17:05:30.597835'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:30,722 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:05:30] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:42,221 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:05:42,221 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:05:42,223 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:42.221980' AND '2025-03-19 17:05:42.221980'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:42,223 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:42.221980' AND '2025-03-19 17:05:42.221980'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:42,223 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:42.221980' AND '2025-03-19 17:05:42.221980'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:42,224 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:05:42] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:49,709 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:05:49,709 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:05:49,711 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:49.709925' AND '2025-03-19 17:05:49.709925'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:49,711 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:49.709925' AND '2025-03-19 17:05:49.709925'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:49,711 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:49.709925' AND '2025-03-19 17:05:49.709925'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:49,711 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:05:49] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:51,742 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:05:51,743 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:05:51,744 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:51.743284' AND '2025-03-19 17:05:51.743284'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:51,744 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:51.743284' AND '2025-03-19 17:05:51.743284'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:51,744 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:51.743284' AND '2025-03-19 17:05:51.743284'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:51,745 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:05:51] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:52,155 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:05:52,155 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:05:52,157 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:52.155632' AND '2025-03-19 17:05:52.155632'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:52,157 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:52.155632' AND '2025-03-19 17:05:52.155632'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:52,157 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:52.155632' AND '2025-03-19 17:05:52.155632'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:52,158 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:05:52] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:05:54,114 - __main__ - INFO - Processing query: Quais produtos estão mais propensos a serem comprados nos próximos meses?
+2025-03-19 17:05:54,114 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:05:54,116 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:54.114608' AND '2025-03-19 17:05:54.114608'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:54,116 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:54.114608' AND '2025-03-19 17:05:54.114608'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:54,116 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:05:54.114608' AND '2025-03-19 17:05:54.114608'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:05:54,116 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:05:54] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:06:00,726 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:06:00,726 - __main__ - INFO - Creating database connection
+2025-03-19 17:06:00,727 - __main__ - INFO - Using database at: sqlite:///c:\Users\Johnny Pessoli\Documents\Projetos\Estudos\Data Science\TesteIA\src\customer_data.db
+2025-03-19 17:06:00,727 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:06:00,746 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-03-19 17:06:00,746 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-19 17:06:00,747 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:06:02,184 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:06:02,184 - __main__ - INFO - Creating database connection
+2025-03-19 17:06:02,184 - __main__ - INFO - Using database at: sqlite:///c:\Users\Johnny Pessoli\Documents\Projetos\Estudos\Data Science\TesteIA\src\customer_data.db
+2025-03-19 17:06:02,184 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:06:02,191 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:06:02,194 - werkzeug - INFO -  * Debugger PIN: 784-243-297
+2025-03-19 17:06:02,208 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:06:02] "GET /?ide_webview_request_time=1742414761630 HTTP/1.1" 200 -
+2025-03-19 17:06:06,417 - __main__ - INFO - Processing query: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?
+2025-03-19 17:06:06,417 - user_interface.ai_agent - INFO - Initializing AI agent with fresh data
+2025-03-19 17:06:06,535 - data_processing.data_collector - ERROR - Error collecting transaction data: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:06:06.417899' AND '2025-03-19 17:06:06.417899'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:06:06,535 - user_interface.ai_agent - ERROR - Error initializing AI agent: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:06:06.417899' AND '2025-03-19 17:06:06.417899'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:06:06,535 - user_interface.ai_agent - ERROR - Error processing query: (sqlite3.OperationalError) no such table: transactions
+[SQL: 
+                SELECT 
+                    customer_id, 
+                    transaction_id,
+                    product_id,
+                    purchase_date,
+                    amount,
+                    channel,
+                    session_data
+                FROM transactions
+                WHERE purchase_date BETWEEN '2024-03-19 17:06:06.417899' AND '2025-03-19 17:06:06.417899'
+            ]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-19 17:06:06,536 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:06:06] "POST /api/query HTTP/1.1" 200 -
+2025-03-19 17:09:44,948 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Johnny Pessoli\\Documents\\Projetos\\Estudos\\Data Science\\TesteIA\\src\\main.py', reloading
+2025-03-19 17:09:45,198 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:09:46,815 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:09:46,815 - __main__ - ERROR - Error creating database connection: name 'session' is not defined
+2025-03-19 17:09:46,815 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:10:59,231 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:10:59,231 - __main__ - ERROR - Error creating database connection: name 'session' is not defined
+2025-03-19 17:10:59,232 - data_processing.data_collector - ERROR - No database connection string provided
+2025-03-19 17:10:59,232 - __main__ - ERROR - Error initializing AI agent: Database connection string is required. Please configure your database connection.
+2025-03-19 17:11:26,865 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:11:26,866 - __main__ - ERROR - Error creating database connection: name 'session' is not defined
+2025-03-19 17:11:26,866 - data_processing.data_collector - ERROR - No database connection string provided
+2025-03-19 17:11:26,866 - __main__ - ERROR - Error initializing AI agent: Database connection string is required. Please configure your database connection.
+2025-03-19 17:12:47,103 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.7:5000
+2025-03-19 17:12:47,103 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-19 17:12:47,105 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:12:48,544 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:12:48,546 - werkzeug - INFO -  * Debugger PIN: 784-243-297
+2025-03-19 17:12:48,555 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:12:48] "[32mGET /?ide_webview_request_time=1742415168439 HTTP/1.1[0m" 302 -
+2025-03-19 17:12:48,570 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:12:48] "GET /config HTTP/1.1" 200 -
+2025-03-19 17:13:02,257 - __main__ - INFO - Creating database connection to sqlite database
+2025-03-19 17:13:02,257 - __main__ - INFO - Initializing AI agent components
+2025-03-19 17:13:02,258 - __main__ - INFO - Creating database connection to sqlite database
+2025-03-19 17:13:02,258 - __main__ - INFO - AI agent components initialized successfully
+2025-03-19 17:13:02,260 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:13:02] "[32mPOST /config HTTP/1.1[0m" 302 -
+2025-03-19 17:13:02,278 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:13:02] "[32mGET / HTTP/1.1[0m" 302 -
+2025-03-19 17:13:02,284 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:13:02] "GET /config HTTP/1.1" 200 -
+2025-03-19 17:17:48,550 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Johnny Pessoli\\Documents\\Projetos\\Estudos\\Data Science\\TesteIA\\src\\main.py', reloading
+2025-03-19 17:17:48,785 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:17:50,717 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:17:50,720 - werkzeug - INFO -  * Debugger PIN: 784-243-297
+2025-03-19 17:22:36,394 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-19 17:22:36,394 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-19 17:22:36,395 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:22:37,805 - werkzeug - WARNING -  * Debugger is active!
+2025-03-19 17:22:37,809 - werkzeug - INFO -  * Debugger PIN: 139-394-289
+2025-03-19 17:22:44,895 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:22:44] "[32mGET / HTTP/1.1[0m" 302 -
+2025-03-19 17:22:44,921 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:22:44] "GET /config HTTP/1.1" 200 -
+2025-03-19 17:22:45,792 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:22:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-19 17:22:52,750 - __main__ - INFO - Creating database connection to sqlite database
+2025-03-19 17:22:52,943 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:22:52] "POST /config HTTP/1.1" 200 -
+2025-03-19 17:23:31,713 - __main__ - INFO - Creating database connection to sqlite database
+2025-03-19 17:23:31,716 - werkzeug - INFO - 127.0.0.1 - - [19/Mar/2025 17:23:31] "POST /config HTTP/1.1" 200 -
+2025-03-19 17:26:36,525 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Johnny Pessoli\\Documents\\Projetos\\Estudos\\Data Science\\TesteIA\\src\\main.py', reloading
+2025-03-19 17:26:36,742 - werkzeug - INFO -  * Restarting with stat
+2025-03-19 17:26:36,900 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Johnny Pessoli\\Documents\\Projetos\\Estudos\\Data Science\\TesteIA\\src\\main.py', reloading
+2025-03-19 17:26:37,124 - werkzeug - INFO -  * Restarting with stat

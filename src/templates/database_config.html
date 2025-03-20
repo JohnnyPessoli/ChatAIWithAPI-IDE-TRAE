@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuração do Banco de Dados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .password-container {
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+        .card-header {
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Database Configuration Card -->
+                <div class="card mb-4" id="db-config-card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Configuração do Banco de Dados</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="db-config-alert"></div>
+                        
+                        <p class="mb-3">Por favor, forneça as credenciais do banco de dados para continuar.</p>
+                        
+                        <form id="db-config-form" class="needs-validation" novalidate>
+                            <div class="form-group mb-3">
+                                <label for="db_type" class="form-label">Tipo de Banco de Dados</label>
+                                <select class="form-select" id="db_type" name="db_type" required>
+                                    <option value="sqlite">SQLite</option>
+                                    <option value="postgresql">PostgreSQL</option>
+                                    <option value="mysql">MySQL</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor, selecione um tipo de banco de dados.</div>
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="host-group">
+                                <label for="host" class="form-label">Host</label>
+                                <input type="text" class="form-control" id="host" name="host" placeholder="localhost">
+                                <div class="invalid-feedback">Por favor, informe o host do banco de dados.</div>
+                                <div class="form-text">Endereço do servidor de banco de dados (ex: localhost, 127.0.0.1)</div>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="database" class="form-label">Nome do Banco de Dados</label>
+                                <input type="text" class="form-control" id="database" name="database" required>
+                                <div class="invalid-feedback">Por favor, informe o nome do banco de dados.</div>
+                                <div class="form-text" id="database-help">Para SQLite, informe o caminho completo do arquivo</div>
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="port-group">
+                                <label for="port" class="form-label">Porta</label>
+                                <input type="text" class="form-control" id="port" name="port" placeholder="5432">
+                                <div class="invalid-feedback">Por favor, informe a porta do banco de dados.</div>
+                                <div class="form-text">Porta do servidor de banco de dados (ex: 5432 para PostgreSQL, 3306 para MySQL)</div>
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="username-group">
+                                <label for="username" class="form-label">Usuário</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                                <div class="invalid-feedback">Por favor, informe o usuário do banco de dados.</div>
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="password-group">
+                                <label for="password" class="form-label">Senha</label>
+                                <div class="password-container">
+                                    <input type="password" class="form-control" id="password" name="password">
+                                    <span class="password-toggle" onclick="togglePassword()">
+                                        <i class="bi bi-eye"></i>
+                                    </span>
+                                </div>
+                                <div class="invalid-feedback">Por favor, informe a senha do banco de dados.</div>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="test_connection" name="test_connection" checked>
+                                    <label class="form-check-label" for="test_connection">
+                                        Testar conexão antes de salvar
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Conectar ao Banco de Dados</button>
+                                <a href="/" class="btn btn-outline-secondary">Voltar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos do formulário de configuração do banco de dados
+            const dbConfigForm = document.getElementById('db-config-form');
+            const dbConfigAlert = document.getElementById('db-config-alert');
+            const dbTypeSelect = document.getElementById('db_type');
+            const databaseInput = document.getElementById('database');
+            const databaseHelp = document.getElementById('database-help');
+            const hostInput = document.getElementById('host');
+            const portInput = document.getElementById('port');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            
+            // Toggle password visibility
+            window.togglePassword = function() {
+                const passwordInput = document.getElementById('password');
+                const icon = document.querySelector('.password-toggle i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('bi-eye');
+                    icon.classList.add('bi-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('bi-eye-slash');
+                    icon.classList.add('bi-eye');
+                }
+            };
+            
+            // Show/hide fields based on database type
+            dbTypeSelect.addEventListener('change', function() {
+                const dbType = this.value;
+                const dbFields = document.querySelectorAll('.db-field');
+                
+                if (dbType === 'sqlite') {
+                    dbFields.forEach(field => {
+                        field.style.display = 'none';
+                        // Remove required attribute for hidden fields
+                        const input = field.querySelector('input');
+                        if (input) input.removeAttribute('required');
+                    });
+                    databaseHelp.textContent = 'Para SQLite, informe o caminho completo do arquivo (ex: C:\\caminho\\para\\banco.db)';
+                    databaseInput.placeholder = 'C:\\caminho\\para\\banco.db';
+                } else {
+                    dbFields.forEach(field => {
+                        field.style.display = 'block';
+                    });
+                    
+                    // Add required attribute for visible fields
+                    hostInput.setAttribute('required', '');
+                    portInput.setAttribute('required', '');
+                    usernameInput.setAttribute('required', '');
+                    passwordInput.setAttribute('required', '');
+                    
+                    if (dbType === 'postgresql') {
+                        databaseHelp.textContent = 'Nome do banco de dados PostgreSQL';
+                        databaseInput.placeholder = 'postgres';
+                        portInput.placeholder = '5432';
+                        portInput.value = '5432';
+                    } else if (dbType === 'mysql') {
+                        databaseHelp.textContent = 'Nome do banco de dados MySQL';
+                        databaseInput.placeholder = 'mysql';
+                        portInput.placeholder = '3306';
+                        portInput.value = '3306';
+                    }
+                }
+            });
+            
+            // Trigger change event on page load
+            dbTypeSelect.dispatchEvent(new Event('change'));
+            
+            // Handle database configuration form submission
+            dbConfigForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Check form validity
+                if (!this.checkValidity()) {
+                    e.stopPropagation();
+                    this.classList.add('was-validated');
+                    return;
+                }
+                
+                // Show loading
+                dbConfigAlert.innerHTML = `
+                    <div class="alert alert-info">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                            <div>Testando conexão com o banco de dados...</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Get form data
+                const formData = new FormData(dbConfigForm);
+                const dbConfig = {};
+                
+                for (const [key, value] of formData.entries()) {
+                    if (key !== 'test_connection') {
+                        dbConfig[key] = value;
+                    }
+                }
+                
+                // Validate specific fields based on database type
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (dbConfig.db_type === 'sqlite') {
+                    if (!dbConfig.database) {
+                        isValid = false;
+                        errorMessage = 'O caminho do arquivo SQLite é obrigatório.';
+                    }
+                } else {
+                    // For PostgreSQL and MySQL
+                    if (!dbConfig.host) {
+                        isValid = false;
+                        errorMessage = 'O host do banco de dados é obrigatório.';
+                    } else if (!dbConfig.database) {
+                        isValid = false;
+                        errorMessage = 'O nome do banco de dados é obrigatório.';
+                    } else if (!dbConfig.port) {
+                        isValid = false;
+                        errorMessage = 'A porta do banco de dados é obrigatória.';
+                    } else if (!dbConfig.username) {
+                        isValid = false;
+                        errorMessage = 'O usuário do banco de dados é obrigatório.';
+                    }
+                    // Password can be optional in some cases
+                }
+                
+                if (!isValid) {
+                    dbConfigAlert.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            ${errorMessage}
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // For SQLite, ensure the directory exists
+                if (dbConfig.db_type === 'sqlite') {
+                    const dbPath = dbConfig.database;
+                    const lastSlashIndex = Math.max(dbPath.lastIndexOf('\\'), dbPath.lastIndexOf('/'));
+                    
+                    if (lastSlashIndex > 0) {
+                        const dirPath = dbPath.substring(0, lastSlashIndex);
+                        // We'll let the backend handle directory creation
+                        dbConfig.create_dir = true;
+                    }
+                }
+                
+                // Send to backend
+                fetch('/config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dbConfig)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        dbConfigAlert.innerHTML = `
+                            <div class="alert alert-success">
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                Conexão estabelecida com sucesso!
+                            </div>
+                        `;
+                        
+                        // Redirect to main page after a delay
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 1500);
+                    } else {
+                        // Show detailed error message
+                        dbConfigAlert.innerHTML = `
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <strong>Erro ao conectar:</strong> ${data.error}
+                                ${data.details ? `<br><small>${data.details}</small>` : ''}
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    // Show error message
+                    dbConfigAlert.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Erro ao conectar: ${error.message}
+                        </div>
+                    `;
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

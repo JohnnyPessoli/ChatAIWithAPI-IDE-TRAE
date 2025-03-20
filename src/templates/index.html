@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Behavior Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        #results-container {
+            min-height: 200px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .password-container {
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+        .card-header {
+            border-radius: 10px 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Database Configuration Card -->
+                <div class="card mb-4" id="db-config-card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Configuração do Banco de Dados</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="db-config-alert"></div>
+                        
+                        <p class="mb-3">Por favor, forneça as credenciais do banco de dados para continuar.</p>
+                        
+                        <form id="db-config-form">
+                            <div class="form-group mb-3">
+                                <label for="db_type" class="form-label">Tipo de Banco de Dados</label>
+                                <select class="form-select" id="db_type" name="db_type" required>
+                                    <option value="sqlite">SQLite</option>
+                                    <option value="postgresql">PostgreSQL</option>
+                                    <option value="mysql">MySQL</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="host-group">
+                                <label for="host" class="form-label">Host</label>
+                                <input type="text" class="form-control" id="host" name="host" placeholder="localhost">
+                                <div class="form-text">Endereço do servidor de banco de dados (ex: localhost, 127.0.0.1)</div>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="database" class="form-label">Nome do Banco de Dados</label>
+                                <input type="text" class="form-control" id="database" name="database" required>
+                                <div class="form-text">Para SQLite, informe o caminho completo do arquivo</div>
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="username-group">
+                                <label for="username" class="form-label">Usuário</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
+                            
+                            <div class="form-group mb-3 db-field" id="password-group">
+                                <label for="password" class="form-label">Senha</label>
+                                <div class="password-container">
+                                    <input type="password" class="form-control" id="password" name="password">
+                                    <span class="password-toggle" onclick="togglePassword()">
+                                        <i class="bi bi-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Conectar ao Banco de Dados</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- AI Query Card (initially hidden) -->
+                <div class="card" id="query-card" style="display: none;">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">AI Customer Behavior Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="query-input" class="form-label">Faça uma pergunta sobre o comportamento dos clientes</label>
+                            <textarea class="form-control" id="query-input" rows="3" placeholder="Ex: Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Sugestões de perguntas</label>
+                            <div class="list-group">
+                                <button type="button" class="list-group-item list-group-item-action suggested-query">Quais clientes têm maior probabilidade de fazer uma nova compra nos próximos 30 dias?</button>
+                                <button type="button" class="list-group-item list-group-item-action suggested-query">Quais produtos estão mais propensos a serem comprados nos próximos meses?</button>
+                                <button type="button" class="list-group-item list-group-item-action suggested-query">Quais são os clientes mais valiosos (com maior ticket médio e recorrência)?</button>
+                                <button type="button" class="list-group-item list-group-item-action suggested-query">Quais canais de aquisição estão gerando os clientes mais fiéis e lucrativos?</button>
+                            </div>
+                        </div>
+                        
+                        <button id="submit-query" class="btn btn-primary">Enviar Consulta</button>
+                        <button id="change-db-config" class="btn btn-outline-secondary">Alterar Configuração do Banco</button>
+                        
+                        <div id="results-container" class="mt-4">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0">Resultados</h5>
+                                </div>
+                                <div class="card-body" id="results-body">
+                                    <p class="text-muted">Os resultados das consultas aparecerão aqui.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add a link to database configuration page -->
+    <div class="text-end mt-3">
+        <a href="/database-config" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-gear"></i> Configurar Banco de Dados
+        </a>
+    </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sugestões de consultas
+            const suggestedQueries = document.querySelectorAll('.suggested-query');
+            const queryInput = document.getElementById('query-input');
+            
+            suggestedQueries.forEach(query => {
+                query.addEventListener('click', function() {
+                    queryInput.value = this.textContent;
+                });
+            });
+            
+            // Envio de consulta
+            const submitQuery = document.getElementById('submit-query');
+            const resultsBody = document.getElementById('results-body');
+            
+            submitQuery.addEventListener('click', function() {
+                const query = queryInput.value.trim();
+                
+                if (!query) {
+                    alert('Por favor, insira uma consulta.');
+                    return;
+                }
+                
+                // Mostrar indicador de carregamento
+                resultsBody.innerHTML = `
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Carregando...</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Enviar consulta para o backend
+                fetch('/api/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: query })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        // Exibir resultados
+                        displayResults(data.response);
+                    } else {
+                        resultsBody.innerHTML = `
+                            <div class="alert alert-danger">
+                                Erro ao processar consulta: ${data.error}
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    resultsBody.innerHTML = `
+                        <div class="alert alert-danger">
+                            Erro ao processar consulta: ${error.message}
+                        </div>
+                    `;
+                    console.error('Error:', error);
+                });
+            });
+            
+            // Função para exibir resultados
+            function displayResults(response) {
+                // Existing displayResults function remains unchanged
+                let html = '';
+                
+                if (response.message) {
+                    html += `<p>${response.message}</p>`;
+                }
+                
+                if (response.recommendation) {
+                    html += `<div class="alert alert-info">${response.recommendation}</div>`;
+                }
+                
+                if (response.top_customers) {
+                    html += `
+                        <h5 class="mt-3">Clientes com Alta Probabilidade de Compra</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Probabilidade</th>
+                                    <th>Recência (dias)</th>
+                                    <th>Frequência</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    response.top_customers.forEach(customer => {
+                        html += `
+                            <tr>
+                                <td>${customer.customer_id}</td>
+                                <td>${(customer.purchase_probability * 100).toFixed(1)}%</td>
+                                <td>${customer.recency_days}</td>
+                                <td>${customer.frequency}</td>
+                                <td>R$ ${customer.monetary_value.toFixed(2)}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    html += `
+                            </tbody>
+                        </table>
+                    `;
+                }
+                
+                if (response.trending_products) {
+                    html += `
+                        <h5 class="mt-3">Produtos em Alta</h5>
+                        <ul class="list-group">
+                    `;
+                    
+                    response.trending_products.forEach(product => {
+                        html += `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                ${product.product_name}
+                                <span class="badge bg-success rounded-pill">+${product.growth_rate.toFixed(1)}%</span>
+                            </li>
+                        `;
+                    });
+                    
+                    html += `</ul>`;
+                }
+                
+                if (response.declining_products) {
+                    html += `
+                        <h5 class="mt-3">Produtos em Queda</h5>
+                        <ul class="list-group">
+                    `;
+                    
+                    response.declining_products.forEach(product => {
+                        html += `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                ${product.product_name}
+                                <span class="badge bg-danger rounded-pill">${product.growth_rate.toFixed(1)}%</span>
+                            </li>
+                        `;
+                    });
+                    
+                    html += `</ul>`;
+                }
+                
+                if (html === '') {
+                    html = '<p>Nenhum resultado específico disponível.</p>';
+                }
+                
+                resultsBody.innerHTML = html;
+            }
+        });
+    </script>
+</body>
+</html>
